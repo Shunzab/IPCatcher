@@ -1,0 +1,14 @@
+[Unit]
+Description=IP Monitor Service
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /opt/ip_monitor/ip_monitor.py
+WorkingDirectory=/opt/ip_monitor
+StandardOutput=append:/var/log/ip_monitor.log
+StandardError=append:/var/log/ip_monitor.err
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,20 @@
+[2025-06-24 15:25:01] Failed to write hosts file: [Errno 13] Permission denied: 'C:\\Windows\\System32\\drivers\\etc\\hosts'
+[2025-06-24 15:32:04] Failed to write hosts file: [Errno 13] Permission denied: 'C:\\Windows\\System32\\drivers\\etc\\hosts'
+[2025-06-24 15:32:43] Failed to write hosts file: [Errno 13] Permission denied: 'C:\\Windows\\System32\\drivers\\etc\\hosts'
+Failed to send email:name 'RECEIVER' is not defined
+[2025-06-24 15:33:16] Failed to write hosts file: [Errno 13] Permission denied: 'C:\\Windows\\System32\\drivers\\etc\\hosts'
+Failed to send email:name 'RECEIVER' is not defined
+[2025-06-24 15:41:31] Failed to write hosts file: [Errno 13] Permission denied: 'C:\\Windows\\System32\\drivers\\etc\\hosts'
+Failed to send email:name 'RECEIVER' is not defined
+[2025-06-24 15:42:35] Failed to write hosts file: [Errno 13] Permission denied: 'C:\\Windows\\System32\\drivers\\etc\\hosts'
+Failed to send email:name 'RECEIVER' is not defined
+[2025-06-24 15:43:22] Failed to write hosts file: [Errno 13] Permission denied: 'C:\\Windows\\System32\\drivers\\etc\\hosts'
+Failed to send email:name 'RECEIVER' is not defined
+[2025-06-24 15:43:52] Failed to write hosts file: [Errno 13] Permission denied: 'C:\\Windows\\System32\\drivers\\etc\\hosts'
+Failed to send email:name 'RECEIVER' is not defined
+[2025-06-24 15:46:39] Failed to write hosts file: [Errno 13] Permission denied: 'C:\\Windows\\System32\\drivers\\etc\\hosts'
+Failed to send email:name 'RECEIVER' is not defined
+[2025-06-24 15:48:12] Failed to write hosts file: [Errno 13] Permission denied: 'C:\\Windows\\System32\\drivers\\etc\\hosts'
+Failed to send email:name 'RECEIVER' is not defined
+[2025-06-24 15:49:41] Failed to write hosts file: [Errno 13] Permission denied: 'C:\\Windows\\System32\\drivers\\etc\\hosts'
+Failed to send email:name 'RECEIVER' is not defined
