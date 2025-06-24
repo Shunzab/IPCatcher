@@ -1,6 +1,3 @@
-from host_modifer import *
-from ip_monitor import *
-
 CHANGE_LOG_FILE = "ip_change_log.txt"
 ERROR_LOG_FILE = "ip_error_log.txt"
 

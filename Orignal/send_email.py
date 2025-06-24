@@ -7,18 +7,19 @@ from logger import *
 load_dotenv()
 
 def env_var_exist():
-    if os.path.exists(".env"):
-        pass
-    else:    
-        with open('.env', 'a') as env:
-            pass
+    if not os.path.exists(".env"):
+        with open('.env', 'w') as env:
+            env.write("EMAIL_SENDER=\nEMAIL_PASSWORD=\nEMAIL_RECEIVER=\n")
 
 
 SENDER = os.getenv("EMAIL_SENDER")
-RECIVER = os.getenv("EMAIL_RECEIVER")
+RECEIVER = os.getenv("EMAIL_RECEIVER")
 PASSWORD = os.getenv("EMAIL_PASSWORD")
 
 def send_email(subject, body):
+    if not SENDER or not RECEIVER or not PASSWORD:
+        print("[ERROR] Email credentials are missing in .env file. Email not sent.")
+        return
     try:
         msg = EmailMessage()
         msg.set_content(body)

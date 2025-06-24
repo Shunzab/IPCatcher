@@ -10,7 +10,7 @@ def clear_screen():
 BOLD = '\033[1m'
 END = '\033[0m'
 
-print("{BOLD}PLEASE RUN THIS COD WITH ADMINISTATOR(SUDO IN LINUX) PRIVELIGES. TO CONFIGURE YOUR DYNAMIC-DNS, IT MAKES CHANGES TO HOST FILE. BEWARE!{END}")
+print(f"{BOLD}PLEASE RUN THIS COD WITH ADMINISTATOR(SUDO IN LINUX) PRIVELIGES. TO CONFIGURE YOUR DYNAMIC-DNS, IT MAKES CHANGES TO HOST FILE. BEWARE!{END}")
 print("****************************************WELCOME TO IP CATCHER!!!****************************************")
 menu=(                               '*******************MENU*******************'                               ).center(101)
 options = ("1- Run as a program.\n                              2-Run as a service.").center(130)
@@ -48,11 +48,12 @@ def your_choice():
 
             a = input("Please enter the interval(in seconds) after which IP is checked for again or press enter for default timer(Half Hour):") # it uses default value if anything other than an integer is used.
             b = input("Please enter your domain name or press enter for default(home.home):") or "home.home"
-            if type(a) is int:
-                interval_domain(a, b)
-            else:
-                interval_domain(1800, b)
-                monitor_ip()
+            try:
+                interval = int(a)
+            except (ValueError, TypeError):
+                interval = 1800
+            interval_domain(interval, b)
+            monitor_ip()
     elif choice == 2:
         service_runner()
     else:

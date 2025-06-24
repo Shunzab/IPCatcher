@@ -6,6 +6,7 @@ from datetime import datetime
 import smtplib
 from email.message import EmailMessage
 from dotenv import load_dotenv
+import ctypes
 
 load_dotenv()
 def env_var_exist():
@@ -31,9 +32,14 @@ ERROR_LOG_FILE = "ip_error_log.txt"
 
 
 SENDER = os.getenv("EMAIL_SENDER")
-RECIVER = os.getenv("EMAIL_RECEIVER")
+RECEIVER = os.getenv("EMAIL_RECEIVER")
 PASSWORD = os.getenv("EMAIL_PASSWORD")
 
+def is_admin():
+    try:
+        return os.geteuid() == 0
+    except AttributeError:
+        return ctypes.windll.shell32.IsUserAnAdmin() != 0
 
 def get_hosts_file_path():
     if platform.system() == "Windows":
@@ -55,6 +61,9 @@ def timestamp():
     return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 def send_email(subject, body):
+    if not SENDER or not RECEIVER or not PASSWORD:
+        print("[ERROR] Email credentials are missing in .env file. Email not sent.")
+        return
     try:
         msg = EmailMessage()
         msg.set_content(body)
@@ -144,5 +153,8 @@ def monitor_ip():
         time.sleep(CHECK_INTERVAL)
 
 if __name__ == "__main__":
+    if not is_admin():
+        print("[ERROR] This script must be run as root/administrator to modify the hosts file.")
+        exit(1)
     monitor_ip()
     env_var_exist()
