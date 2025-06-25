@@ -39,6 +39,7 @@ if not exist "C:\Program Files\NSSM" mkdir "C:\Program Files\NSSM"
 REM Copy files
 copy /Y "%SCRIPT_DIR%nssm.exe" "C:\Program Files\NSSM\"
 copy /Y "%SCRIPT_DIR%IPCatcher.py" "C:\Program Files\IPCatcher\"
+copy /Y "%SCRIPT_DIR%.env" "C:\Program Files\IPCatcher\"
 
 REM Use full path to nssm.exe and python.exe
 "C:\Program Files\NSSM\nssm.exe" install IPCatcher "%PYTHON_PATH%" "C:\Program Files\IPCatcher\IPCatcher.py"
