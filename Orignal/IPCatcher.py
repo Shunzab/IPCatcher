@@ -46,7 +46,7 @@ def your_choice():
                 print('Invalid Choice!')
                 your_choice()
 
-            a = input("Please enter the interval(in seconds) after which IP is checked for again or press enter for default timer(Half Hour):") # it uses default value if anything other than an integer is used.
+            a = int(input("Please enter the interval(in seconds) after which IP is checked for again or press enter for default timer(Half Hour):")) # it uses default value if anything other than an integer is used.
             b = input("Please enter your domain name or press enter for default(home.home):") or "home.home"
             try:
                 interval = int(a)

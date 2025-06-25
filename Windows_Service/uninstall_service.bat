@@ -14,35 +14,45 @@ if not exist %NSSM_EXE% (
     exit /b 1
 )
 
-echo Attempting to stop service %SERVICE_NAME%...
-sc query %SERVICE_NAME% | find "STATE" | find /I "PAUSED"
-if %errorlevel%==0 (
-    echo Service is PAUSED. Attempting to continue...
-    sc continue %SERVICE_NAME%
-    timeout /t 2 >nul
-)
-
-%NSSM_EXE% stop %SERVICE_NAME%
+REM Check if the service exists
+sc query %SERVICE_NAME% >nul 2>&1
 if %errorlevel% neq 0 (
-    echo Service may not be running or already stopped. Continuing...
+    echo Service %SERVICE_NAME% does not exist. Skipping stop and remove steps.
+) else (
+    echo Attempting to stop service %SERVICE_NAME%...
+    sc query %SERVICE_NAME% | find "STATE" | find /I "PAUSED"
+    if %errorlevel%==0 (
+        echo Service is PAUSED. Attempting to continue...
+        sc continue %SERVICE_NAME%
+        timeout /t 2 >nul
+    )
+
+    %NSSM_EXE% stop %SERVICE_NAME%
+    if %errorlevel% neq 0 (
+        echo Service may not be running or already stopped. Continuing...
+    )
+
+    %NSSM_EXE% remove %SERVICE_NAME% confirm
+    if %errorlevel% neq 0 (
+        echo Service may not exist or could not be removed. Continuing...
+    )
 )
 
-%NSSM_EXE% remove %SERVICE_NAME% confirm
-if %errorlevel% neq 0 (
-    echo Service may not exist or could not be removed. Continuing...
+REM Remove directories if they exist
+if exist "C:\Program Files\IPCatcher" (
+    rmdir /s /q "C:\Program Files\IPCatcher"
+    echo Removed C:\Program Files\IPCatcher
+) else (
+    echo Directory C:\Program Files\IPCatcher does not exist.
 )
 
-rmdir /s /q "C:\Program Files\IPCatcher"
-rmdir /s /q "C:\Program Files\NSSM"
-echo Service and files removed.
+if exist "C:\Program Files\NSSM" (
+    rmdir /s /q "C:\Program Files\NSSM"
+    echo Removed C:\Program Files\NSSM
+) else (
+    echo Directory C:\Program Files\NSSM does not exist.
+)
 
-REM Set the service to run as Local System (admin privileges)
-sc config IPCatcher obj= "LocalSystem" password= ""
-
-"C:\Program Files\NSSM\nssm.exe" install IPCatcher "%PYTHON_PATH%" "C:\Program Files\IPCatcher\IPCatcher.py"
-sc config IPCatcher obj= "LocalSystem" password= ""
-"C:\Program Files\NSSM\nssm.exe" start IPCatcher
-sc config IPCatcher start= auto
-
+echo Uninstall process completed.
 pause
 endlocal

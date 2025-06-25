@@ -16,7 +16,9 @@ def env_var_exist():
         pass
     else:    
         with open('.env', 'a') as env:
-            pass
+            env.write("EMAIL_SENDER = \"\"\n")
+            env.write("EMAIL_PASSWORD = \"\"\n")
+            env.write("EMAIL_RECEIVER = \"\"\n")
 
 
 

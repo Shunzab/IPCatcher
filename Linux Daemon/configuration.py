@@ -2,7 +2,7 @@ from IPCatcher import *
 
 def get_email_address(send, recv, pwd):
         with open('.env' , 'w') as env:
-            env.write(f"EMAIL_SENDER = {send}\n EMAIL_PASSWORD = {pwd}\n EMAIL_RECEIVER ={recv}")
+            env.write(f"EMAIL_SENDER = {send}\nEMAIL_PASSWORD = {pwd}\nEMAIL_RECEIVER ={recv}")
 
 def interval_domain(inte, dom):
     global CHECK_INTERVAL
@@ -26,7 +26,7 @@ def skip():
         print('Invalid Choice!')
         skip()
 
-    a = input("Please enter the interval(in seconds) after which IP is checked for again or press enter for default timer(Half Hour):")
+    a = int(input("Please enter the interval(in seconds) after which IP is checked for again or press enter for default timer(Half Hour):"))
     b = input("Please enter your domain name or press enter for default(home.home):")
     if type(a) is int:
         interval_domain(a, b)
