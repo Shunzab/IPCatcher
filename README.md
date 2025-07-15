@@ -61,4 +61,4 @@ Windows	Download/unzip under C:\ip_monitor, then run Install as Admin.
 Linux	Upload/unzip under a user folder, then run sudo ./install.sh.
 
 ## Notes:
-Also includes Extras if you wanna automate running from a single file as a service. Configuration.py is a file added later to configure app retriving timer, email address, and domain. Change before running. Orignal Files made cod also included. Also, add NSSM to your system path, and modify the path where python3 lives(for Windows), then run the script.
+Also includes Extras if you wanna automate running from a single file as a service. Configuration.py is a file added later to configure app retriving timer, email address, and domain. Change before running. Orignal Files made cod also included. Use Task Scheduler To run the script on startup of your computer.
